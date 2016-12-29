@@ -54,8 +54,10 @@ public class MainActivity extends AppCompatActivity {
                 editor.putBoolean(PREF_SWITCH_ON, b);
                 editor.apply();
                 if (b) {
+                    Toast.makeText(MainActivity.this, "Downloader is ON", Toast.LENGTH_SHORT).show();
                     startTimer();
                 } else {
+                    Toast.makeText(MainActivity.this, "Downloader is OFF", Toast.LENGTH_SHORT).show();
                     cancelTimer();
                 }
             }
@@ -85,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
     private void cancelTimer() {
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         manager.cancel(pendingIntent);
-        Toast.makeText(this, "cancel timer", Toast.LENGTH_SHORT).show();
     }
 
     private void startTimer() {
@@ -105,6 +106,5 @@ public class MainActivity extends AppCompatActivity {
 
         manager.setRepeating(AlarmManager.RTC_WAKEUP,
                 calendar.getTimeInMillis(), interval, pendingIntent);
-        Toast.makeText(this, "start timer", Toast.LENGTH_SHORT).show();
     }
 }
